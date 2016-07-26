@@ -1,6 +1,6 @@
 .the-table{
-	background-color: green;
-	border: 5px solid #663300;
+	background-color: #2f2f2f;
+	border: 5px solid #df8920;
 	border-radius: 10px;
 	margin-top: 30px;
 	padding: 30px 0px;
@@ -9,29 +9,74 @@
 
 .card{
 	height: 120px;
-	background-color: #fff;
+	background-color: #474747;
 	color: black;
-	margin: 10px;
-	width: 13%;
+	margin: 6px;
+	width: 14.2%;
 	border-radius: 5px;
 	line-height: 120px;
 }
 
+.deck-holder{
+	position: relative;
+}
+
+.travel-card{
+
+}
+
+.travel-card-back{
+	visibility: hidden;
+}
+
+.deck-cover{
+	position: absolute;
+	background-image: url('images/card-back.png');
+	background-repeat: no-repeat;
+	background-size: auto 120px;
+}
+
+.game-banner{
+	color: #721000;
+	font-weight: bold;
+	font-size: 16px;
+}
+
 .dealer-hand-wrapper, .player-hand-wrapper{
-	color: white;
+	color: #d45a02;
 	font-size: 18px;
 	text-align: center;
 }
 
-.player-total-number, .dealer-total-number{
+.player-total-number, .dealer-total-number, .dealer-overall-number, .player-overall-number{
 	display: block;
 	text-align: center;
 }
+.player-overall, .dealer-overall {
+	color: #df8920;
+}
 
-.player-actions button{
+.player-actions button, .reset{
 	width: 100%;
-	background-color: black;
-	color: white;
+	background-color: #2f2f2f;
+	color: #df8920;
 	border-radius: 3px;
 	margin-top: 10px;
+}
+
+.reset{
+	margin-top: 30px;
+	display: none;
+}
+
+.player-actions button:hover{
+	background-color: #df8920;
+	color: #2f2f2f;
+	transition: all 0.5s ease-in;
+}
+
+.reset:hover{
+	background-color: #df8920;
+	color: #2f2f2f;
+	transition: all 0.5s ease-in;
 }
