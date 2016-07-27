@@ -1,14 +1,5 @@
-// Set messages after game over
-// The table/game looks like Rob made it. Change this.
-// What about those stupid 11, 12, 13?
-// What about Aces?
-// The player can hit forever?
-// There is no win counter/bet system
+
 // There is no "deck" to draw from
-// The cards aren't red or black like they should/could be
-// The cards are lame. Find images.
-// There is no delay on showing the cards... it's instant. 
-// You can see the dealers 2nd card on deal. That's unfair (to the house).
 
 //Build the deck of cards
 var theDeck = [];
@@ -127,7 +118,7 @@ function placeCard(who, where, cardToPlace){
 		$(this).css({'backgroundImage':imgToPlace}).fadeIn(500);
 	})
 	}else if(where !== 'one'){
-		$(classSelector).css({'backgroundImage':'url("css/images/card-back.png")'});
+		$(classSelector).css({'backgroundImage':'url("css/images/card-back-new.jpg")'});
 	}
 }
 
@@ -165,7 +156,13 @@ function calculateTotal(hand, whosTurn){
 		if (cardValue > 10){
 			cardValue = 10;
 		}
+		if(cardValue === 1){
+			cardValue = 11;
+		}
 		total += cardValue;
+		if((cardValue === 11) && (total > 21)){
+			total -= 10;
+		}
 	}
 	// Update the html with the new total
 	var elementToUpdate = '.' + whosTurn + '-total-number';
@@ -183,41 +180,45 @@ function checkWin(){
 		//If player busts
 		var message = 'Player has exceed limit with ' + playerTotal + '. House wins.';
 		$('.game-alerts').html(message);
-		$('.hit-button, .stand-button').attr('disabled', 'disabled');
+		$('.hit-button, .stand-button, .deal-button').attr('disabled', 'disabled');
 		gameOver++;
 		overallDealerNumber++;
-		overallDealer.innerHTML = overallDealerNumber;
+		overallDealer.innerHTML++;
+		overallDealerNumber--;
 	}else if(dealerTotal > 21){
 		//If house busts
 		var message = 'House has exceed limit with ' + dealerTotal + '. Player wins.';
 		$('.game-alerts').html(message);
-		$('.hit-button, .stand-button').attr('disabled', 'disabled');
+		$('.hit-button, .stand-button, .deal-button').attr('disabled', 'disabled');
 		gameOver++;
 		overallPlayerNumber++;
-		overallPlayer.innerHTML = overallPlayerNumber;
+		overallPlayer.innerHTML++;
+		overallPlayerNumber--;
 	}else if (dealerTotal >= 17){
 		//No on has exceeded the limit
 		if(playerTotal > dealerTotal){
 			//Player wins
 			var message = 'Player beats House with ' + playerTotal + '. Player wins.';
 			$('.game-alerts').html(message);
-			$('.hit-button, .stand-button').attr('disabled', 'disabled');
+			$('.hit-button, .stand-button, .deal-button').attr('disabled', 'disabled');
 			gameOver++;
 			overallPlayerNumber++;
-			overallPlayer.innerHTML = overallPlayerNumber;
+			overallPlayer.innerHTML++;
+			overallPlayerNumber--;
 		}else if(dealerTotal > playerTotal){
 			//House wins
 			var message = 'House beats Player with ' + dealerTotal + '. House wins.';
 			$('.game-alerts').html(message);
-			$('.hit-button, .stand-button').attr('disabled', 'disabled');
+			$('.hit-button, .stand-button, .deal-button').attr('disabled', 'disabled');
 			overallDealerNumber++;
-			overallDealer.innerHTML = overallDealerNumber;
+			overallDealer.innerHTML++;
+			overallDealerNumber--;
 			gameOver++;
 		}else{
 			//Tie
 			var message = 'Both House and Player have same score. No loss.';
 			$('.game-alerts').html(message);
-			$('.hit-button, .stand-button').attr('disabled', 'disabled');
+			$('.hit-button, .stand-button, .deal-button').attr('disabled', 'disabled');
 			gameOver++;
 		}
 	}
@@ -235,7 +236,7 @@ function reset(){
 	dealersHand = [];
 	$('.card').each(function(){
 		$('.card').css({
-			'backgroundImage':"url('css/images/card-back.png')"
+			'backgroundImage':"url('css/images/card-back-new.jpg')"
 		});
 	})
 	$('.dealer-total-number').html('0');

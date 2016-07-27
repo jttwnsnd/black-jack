@@ -16,13 +16,13 @@ body{
 .card{
 	height: 120px;
 	color: black;
-	margin: 6px;
-	width: 14.2%;
+	margin: 5px;
+	width: 14.7%;
 	border-radius: 5px;
 	line-height: 120px;
 	position: relative;
 	perspective: 800px;
-	background-image:url('images/card-back.png');
+	background-image:url('images/card-back-new.jpg');
 	background-repeat: no-repeat;
 	background-size: auto 120px;
 }
