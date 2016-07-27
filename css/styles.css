@@ -1,10 +1,12 @@
+body{
+	background-image: url('images/old-paper-background.png');
+}
 .the-table{
 	background-color: #2f2f2f;
 	border: 5px solid #df8920;
 	border-radius: 10px;
 	margin-top: 30px;
 	padding: 30px 0px;
-	/* transform: rotateX(40deg); */
 }
 
 .col-sm-9, .col-sm-2{
@@ -13,7 +15,6 @@
 
 .card{
 	height: 120px;
-	/* background-color: #474747; */
 	color: black;
 	margin: 6px;
 	width: 14.2%;
@@ -36,10 +37,26 @@
 	color: #2f2f2f;
 }
 
-.dealer-hand-wrapper, .player-hand-wrapper{
+.dealer-hand-wrapper, .player-hand-wrapper, .bet{
 	color: #d45a02;
 	font-size: 18px;
 	text-align: center;
+}
+.bet{
+	padding-bottom: 5px;
+}
+
+.bet-bottom{
+	padding-top: 15px;
+}
+hr{
+	background-color: #df8920;
+	border-top: 5px solid #df8920;
+}
+
+hr.unseen{
+	background-color: #2f2f2f;
+	border-top: 6px solid #2f2f2f;
 }
 
 .player-total-number, .dealer-total-number, .dealer-overall-number, .player-overall-number{
@@ -50,12 +67,14 @@
 	color: #df8920;
 }
 
-.player-actions button, .reset{
+.player-actions button, .reset, .bet-actions button{
 	width: 100%;
 	background-color: #2f2f2f;
 	color: #df8920;
 	border-radius: 3px;
 	margin-top: 10px;
+	box-shadow: 0px 0px 10px 5px rgba(71, 71, 71, 0.4);
+	text-align: center;
 }
 
 .reset{

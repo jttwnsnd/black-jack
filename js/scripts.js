@@ -20,6 +20,9 @@ var overallPlayer = document.getElementsByClassName('player-overall-number')[0];
 var overallDealer = document.getElementsByClassName('dealer-overall-number')[0];
 var overallDealerNumber = 0;
 var overallPlayerNumber = 0;
+//gold collector for placing bets
+var betTally = document.getElementsByClassName('bet-tally')[0];
+var earningTally = document.getElementsByClassName('earning-tally')[0];
 //Keep track of what is in the hands
 var playersHand = [];
 var dealersHand = [];
@@ -29,6 +32,15 @@ var topOfTheDeck = 4;
 var gameOver = 0;
 
 $(document).ready(function(){
+	$('.gold-five').click(function(){
+		placeBet(5);
+	})
+	$('.gold-twenty').click(function(){
+		placeBet(20);
+	})
+	$('.gold-hundred').click(function(){
+		placeBet(100);
+	})
 	$('.deal-button').click(function(){
 		createDeck();
 		shuffleDeck();
@@ -209,6 +221,7 @@ function checkWin(){
 			gameOver++;
 		}
 	}
+	betResults();
 	if(gameOver === 1){
 		$('.reset').css({
 			'display':'inline-block'
@@ -232,4 +245,23 @@ function reset(){
 	$('.reset').css({
 		'display':'none'
 	})
+	betTally.innerHTML = 0;
+}
+
+function placeBet(which){
+	var temp = betTally.innerHTML;
+	var total = parseInt(temp) + which;
+	betTally.innerHTML = total.toString();
+
+}
+function betResults(){
+	var betTemp = betTally.innerHTML;
+	var earningTemp = earningTally.innerHTML;
+	if(overallPlayerNumber++){
+		var addTotal = parseInt(betTemp + earningTemp);
+		earningTally.innerHTML = addTotal;
+	}else if(overallDealerNumber++){
+		var subTotal = parseInt(earningTemp + betTemp);
+		earningTally.innerHTML = subTotal;
+	}
 }
