@@ -7,31 +7,21 @@
 	/* transform: rotateX(40deg); */
 }
 
+.col-sm-9, .col-sm-2{
+	padding: 0px;
+}
+
 .card{
 	height: 120px;
-	background-color: #474747;
+	/* background-color: #474747; */
 	color: black;
 	margin: 6px;
 	width: 14.2%;
 	border-radius: 5px;
 	line-height: 120px;
-}
-
-.deck-holder{
 	position: relative;
-}
-
-.travel-card{
-
-}
-
-.travel-card-back{
-	visibility: hidden;
-}
-
-.deck-cover{
-	position: absolute;
-	background-image: url('images/card-back.png');
+	perspective: 800px;
+	background-image:url('images/card-back.png');
 	background-repeat: no-repeat;
 	background-size: auto 120px;
 }
@@ -39,7 +29,11 @@
 .game-banner{
 	color: #721000;
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
+}
+
+.buffer{
+	color: #2f2f2f;
 }
 
 .dealer-hand-wrapper, .player-hand-wrapper{
@@ -67,6 +61,10 @@
 .reset{
 	margin-top: 30px;
 	display: none;
+	top:-50px;
+	left: 280px;
+	position: absolute;
+
 }
 
 .player-actions button:hover{

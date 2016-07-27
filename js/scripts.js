@@ -88,13 +88,13 @@ $(document).ready(function(){
 })
 $(document).ready(function(){
 	$('.deal-button').hover(function(){
-		$('.deck-cover, .travel-card').css({
+		$('.deck-cover').css({
 			'box-shadow':'0px 2px 5px 1px rgba(0, 0, 0, 0.5)',
 			'transform':'translateY(-5px)',
 			'transition':'all 0.3s linear'
 		})
 	} , function(){
-		$('.deck-cover, .travel-card').css({
+		$('.deck-cover').css({
 			'box-shadow':'0px 0px 0px 0px rgba(0, 0, 0, 0.0)',
 			'transform':'translateY(0px)'
 		})
@@ -103,9 +103,20 @@ $(document).ready(function(){
 
 // matched up what was similar into a function, and placed in the differences as the argurments
 function placeCard(who, where, cardToPlace){
+	//sets up location info for imgToPlace
+	var location = cardToPlace;
 	var classSelector = '.' + who + '-cards .card-' + where;
-	$(classSelector).html(cardToPlace);
-	$()
+	var imgToPlace = 'url("css/images/' + location + '.png")';
+	// $(classSelector).css({
+	// 	'backgroundImage': imgToPlace
+	// })
+	if((who === 'player') || ((who === 'dealer') && (where === 'one'))){
+	$(classSelector).delay(200).fadeOut(500, function(){
+		$(this).css({'backgroundImage':imgToPlace}).fadeIn(500);
+	})
+	}else if(where !== 'one'){
+		$(classSelector).css({'backgroundImage':'url("css/images/card-back.png")'});
+	}
 }
 
 function createDeck(){
@@ -210,7 +221,9 @@ function reset(){
 	playersHand = [];
 	dealersHand = [];
 	$('.card').each(function(){
-		$('.card').html('');
+		$('.card').css({
+			'backgroundImage':"url('css/images/card-back.png')"
+		});
 	})
 	$('.dealer-total-number').html('0');
 	$('.player-total-number').html('0');
