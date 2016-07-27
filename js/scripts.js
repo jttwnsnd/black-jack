@@ -1,7 +1,7 @@
-
 // There is no "deck" to draw from
 
 //Build the deck of cards
+var resetLove = '0';
 var theDeck = [];
 //Keep track of scores in-game
 var totalPlayer = document.getElementsByClassName('dealer-total-number')[0];
@@ -12,8 +12,8 @@ var overallDealer = document.getElementsByClassName('dealer-overall-number')[0];
 var overallDealerNumber = 0;
 var overallPlayerNumber = 0;
 //gold collector for placing bets
-var betTally = document.getElementsByClassName('bet-tally')[0];
-var earningTally = document.getElementsByClassName('earning-tally')[0];
+var betHold = document.getElementsByClassName('bet-amount')[0];
+var walletAmount = document.getElementsByClassName('wallet')[0];
 //Keep track of what is in the hands
 var playersHand = [];
 var dealersHand = [];
@@ -21,37 +21,62 @@ var dealersHand = [];
 var topOfTheDeck = 4;
 //Game is over, reset
 var gameOver = 0;
+var betAmount = 0;
+var placeBet = false;
 
 $(document).ready(function(){
-	$('.gold-five').click(function(){
-		placeBet(5);
+	$('.increase-bet').click(function(){
+		if(betAmount >= 0){
+			betAmount++;
+		}
+		$('.bet-amount').html(betAmount);
 	})
-	$('.gold-twenty').click(function(){
-		placeBet(20);
+	$('.decrease-bet').click(function(){
+		if((betAmount - 1) > 0){
+			betAmount--;
+		}
+		$('.bet-amount').html(betAmount);
 	})
-	$('.gold-hundred').click(function(){
-		placeBet(100);
+	$('.increase-ten').click(function(){
+		if(betAmount >= 0){
+			betAmount += 10;
+		}
+		$('.bet-amount').html(betAmount);
 	})
+	$('.decrease-ten').click(function(){
+		if((betAmount - 10) > 0){
+			betAmount -= 10;
+		}
+		$('.bet-amount').html(betAmount);
+	})
+	$('.bet-submit').click(function(){
+		placeBet = true;
+	})
+
 	$('.deal-button').click(function(){
-		createDeck();
-		shuffleDeck();
+		if(placeBet == true){
+			createDeck();
+			shuffleDeck();
 
-		//pushes cards onto the respective array, the new card. then place it in the DOM
-		playersHand.push(theDeck[0]);
-		// places cards onto table
-		placeCard('player', 'one', theDeck[0]);
+			//pushes cards onto the respective array, the new card. then place it in the DOM
+			playersHand.push(theDeck[0]);
+			// places cards onto table
+			placeCard('player', 'one', theDeck[0]);
 
-		dealersHand.push(theDeck[1]);
-		setTimeout(function(){placeCard('dealer', 'one', theDeck[1])}, 200);
+			dealersHand.push(theDeck[1]);
+			setTimeout(function(){placeCard('dealer', 'one', theDeck[1])}, 200);
 
-		playersHand.push(theDeck[2]);
-		setTimeout(function(){placeCard('player', 'two', theDeck[2])}, 400);
+			playersHand.push(theDeck[2]);
+			setTimeout(function(){placeCard('player', 'two', theDeck[2])}, 400);
 
-		dealersHand.push(theDeck[3]);
-		setTimeout(function(){placeCard('dealer', 'two', theDeck[3])}, 600);
+			dealersHand.push(theDeck[3]);
+			setTimeout(function(){placeCard('dealer', 'two', theDeck[3])},600);
 
-		calculateTotal(playersHand, 'player');
-		calculateTotal(dealersHand, 'dealer');
+			calculateTotal(playersHand, 'player');
+			calculateTotal(dealersHand, 'dealer');
+		}else{
+			alert('You must place a bet before you start!');
+		}
 	})
 	$('.hit-button').click(function(){
 		var slotForNewCard = '';
@@ -87,6 +112,9 @@ $(document).ready(function(){
 	})
 	$('.reset').click(function(){
 		reset();
+		$('.move').each(function(){
+			$('.move').removeClass('move');
+		});
 	})
 })
 $(document).ready(function(){
@@ -113,12 +141,13 @@ function placeCard(who, where, cardToPlace){
 	// $(classSelector).css({
 	// 	'backgroundImage': imgToPlace
 	// })
-	if((who === 'player') || ((who === 'dealer') && (where === 'one'))){
-	$(classSelector).delay(200).fadeOut(300, function(){
-		$(this).css({'backgroundImage':imgToPlace}).fadeIn(300);
-	})
-	}else if(where !== 'one'){
+
+	if((who === 'player') || ((who === 'dealer') && (where !== 'one'))){
+		$(classSelector).css({'backgroundImage':imgToPlace});
+		$(classSelector).addClass('move');
+	}else if(where === 'one'){
 		$(classSelector).css({'backgroundImage':'url("css/images/card-back-new.jpg")'});
+		$(classSelector).addClass('move');
 	}
 }
 
@@ -155,8 +184,7 @@ function calculateTotal(hand, whosTurn){
 		cardValue = Number(hand[i].slice(0,-1));
 		if (cardValue > 10){
 			cardValue = 10;
-		}
-		if(cardValue === 1){
+		}else if(cardValue === 1){
 			cardValue = 11;
 		}
 		total += cardValue;
@@ -165,9 +193,13 @@ function calculateTotal(hand, whosTurn){
 		}
 	}
 	// Update the html with the new total
-	var elementToUpdate = '.' + whosTurn + '-total-number';
-	$(elementToUpdate).text(total);
-
+	if(whosTurn === 'player'){
+		var elementToUpdate = '.' + whosTurn + '-total-number';
+		$(elementToUpdate).text(total);
+	}else{
+		var elementToUpdate = '.' + whosTurn + '-total-number';
+		$(elementToUpdate).text('?');
+	}
 	return total;
 }
 
@@ -184,7 +216,6 @@ function checkWin(){
 		gameOver++;
 		overallDealerNumber++;
 		overallDealer.innerHTML++;
-		overallDealerNumber--;
 	}else if(dealerTotal > 21){
 		//If house busts
 		var message = 'House has exceed limit with ' + dealerTotal + '. Player wins.';
@@ -204,7 +235,6 @@ function checkWin(){
 			gameOver++;
 			overallPlayerNumber++;
 			overallPlayer.innerHTML++;
-			overallPlayerNumber--;
 		}else if(dealerTotal > playerTotal){
 			//House wins
 			var message = 'House beats Player with ' + dealerTotal + '. House wins.';
@@ -212,7 +242,6 @@ function checkWin(){
 			$('.hit-button, .stand-button, .deal-button').attr('disabled', 'disabled');
 			overallDealerNumber++;
 			overallDealer.innerHTML++;
-			overallDealerNumber--;
 			gameOver++;
 		}else{
 			//Tie
@@ -222,18 +251,21 @@ function checkWin(){
 			gameOver++;
 		}
 	}
+	$('.reset').addClass('slide');
 	betResults();
-	if(gameOver === 1){
-		$('.reset').css({
-			'display':'inline-block'
-		})
-	}
+	// if(gameOver === 1){
+	// 	$('.reset').css({
+	// 		'display':'inline-block'
+	// 	})
+	// }
 }
 //resets the game
 function reset(){
 	gameOver--;
 	playersHand = [];
 	dealersHand = [];
+	theDeck = [];
+	topOfTheDeck = 4;
 	$('.card').each(function(){
 		$('.card').css({
 			'backgroundImage':"url('css/images/card-back-new.jpg')"
@@ -243,26 +275,26 @@ function reset(){
 	$('.player-total-number').html('0');
 	$('.hit-button, .stand-button, .deal-button').removeAttr('disabled');
 	$('.game-alerts').html('');
-	$('.reset').css({
-		'display':'none'
-	})
-	betTally.innerHTML = 0;
+	$('.reset').removeClass('slide');
+	if((overallDealerNumber || overallPlayerNumber) > 0){
+		overallDealerNumber = 0;
+		overallPlayerNumber = 0;
+	}
+	betHold.innerHTML = resetLove;
 }
 
-function placeBet(which){
-	var temp = betTally.innerHTML;
-	var total = parseInt(temp) + which;
-	betTally.innerHTML = total.toString();
-
-}
 function betResults(){
-	var betTemp = betTally.innerHTML;
-	var earningTemp = earningTally.innerHTML;
-	if(overallPlayerNumber++){
-		var addTotal = parseInt(betTemp + earningTemp);
-		earningTally.innerHTML = addTotal;
-	}else if(overallDealerNumber++){
-		var subTotal = parseInt(earningTemp + betTemp);
-		earningTally.innerHTML = subTotal;
+	var walletTemp = parseInt(walletAmount.innerHTML);
+	var totalWallet = 0;
+	if(walletTemp > 0){
+		if(overallDealerNumber++){
+			totalWallet = walletTemp + betAmount;
+			$('.wallet').html(totalWallet);
+		}else if(overallPlayerNumber++){
+			totalWallet = walletTemp - betAmount;
+			$('.wallet').html(totalWallet);
+		}
+	}else{
+		alert('You have lost. No more money');
 	}
 }

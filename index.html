@@ -10,82 +10,88 @@
  	<div class="row">
  		<div class="the-table col-sm-8 col-sm-offset-2">
  			<div class="row">
- 				<div class="col-sm-12 deck-wrapper">
- 					<div class="col-sm-9 col-sm-offset-3 deck-holder">
- 						<div class="col-sm-2 col-sm-offset-2"><button class="btn reset">Reset</button></div>
- 					</div>
- 				</div>
- 			</div> <!-- end of deck wrapper row -->
- 			<div class="row">
  				<div class="col-sm-12">
  					<div class="col-sm-6 col-sm-offset-3 game-banner">
- 						<div class="col-sm-12 game-alerts"><span class="buffer">----</span></div>
+ 						<div class="col-sm-12 message-container"><span class="game-alerts"></span></div>
  					</div>
  				</div>
  			</div>
- 			<div class="row bet-wrap">
-				<div class="col-sm-12 bet-actions">
-					<div class="col-sm-12 bet">Bet Options In Gold Coins</div>
-					<!-- <div class="col-sm-2 col-sm-offset-1">Bet Options In Gold</div> -->
-					<div class="col-sm-2 col-sm-offset-2"><button class="btn gold-five">5</button></div>
-					<div class="col-sm-2 col-sm-offset-1"><button class="btn gold-twenty">20</button></div>
-					<div class="col-sm-2 col-sm-offset-1"><button class="btn gold-hundred">100</button></div>
-				</div>
-				<div class="col-sm-12 bet-bottom">
-					<div class="col-sm-2 col-sm-offset-1 bet">Total Bet</div>
-					<div class="col-sm-2 col-sm-offset-1 bet"><span class="bet-tally">0</span></div>
-					<div class="col-sm-2 col-sm-offset-1 bet">Total Earnings</div>
-					<div class="col-sm-2 col-sm-offset-1 bet"><span class="earning-tally">0</span></div>
-				</div>
-			</div>
 			<hr>
  			<!-- Dealer row -->
  			<div class="row">
  				<div class="col-sm-12 dealer-hand-wrapper">
  					<!-- dealer total on the left col -->
- 					<div class="col-sm-3 dealer-total">House Total<span class="dealer-total-number">
- 					0</span>
- 					<div class="col-sm-12 dealer-overall">House Overall<span class="dealer-overall-number">0</span></div>
+ 					<div class="col-sm-3">
+	 					<div class="btn-group-vertical">
+	 						<button class="btn dealer-total" disabled="disabled">House Total</button>
+	 						<button class="btn dealer-total-number" disabled="disabled">0</button>
+	 						<button class="btn dealer-overall" disabled="disabled">House Overall</button>
+	 						<button class="btn dealer-overall-number" disabled="disabled">0</button>
+	 					</div> 
  					</div>
  					<!-- dealer cards on the right, 9col (2 each) -->
  					<div class="col-sm-9 dealer-cards">
- 						<div class="col-sm-2 card card-one"></div>
- 						<div class="col-sm-2 card card-two"></div>
- 						<div class="col-sm-2 card card-three"></div>
- 						<div class="col-sm-2 card card-four"></div>
- 						<div class="col-sm-2 card card-five"></div>
- 						<div class="col-sm-2 card card-six"></div>
+ 						<div class="col-sm-2 card card-one dhide"></div>
+ 						<div class="col-sm-2 card card-two dhide"></div>
+ 						<div class="col-sm-2 card card-three dhide"></div>
+ 						<div class="col-sm-2 card card-four dhide"></div>
+ 						<div class="col-sm-2 card card-five dhide"></div>
+ 						<div class="col-sm-2 card card-six dhide"></div>
  					</div> <!-- end dealer cards -->
  				</div> <!-- end dealer wrapper -->
  			</div> <!-- end dealer row -->
+ 			<hr>
  			<!-- Player row -->
  			<div class="row">
  				<div class="col-sm-12 player-hand-wrapper">
- 					<!-- player total on the left col -->
- 					<div class="col-sm-3 player-total">Player Total<span class="player-total-number">
- 					0</span>
- 					<div class="col-sm-12 player-overall">Player Overall<span class="player-overall-number">0</span></div>
- 					</div>
-
  					<!-- player cards on the right, 9col (2 each) -->
  					<div class="col-sm-9 player-cards">
- 						<div class="col-sm-2 card card-one"></div>
- 						<div class="col-sm-2 card card-two"></div>
- 						<div class="col-sm-2 card card-three"></div>
- 						<div class="col-sm-2 card card-four"></div>
- 						<div class="col-sm-2 card card-five"></div>
- 						<div class="col-sm-2 card card-six"></div>
+ 						<div class="col-sm-2 card card-six phide"></div>
+ 						<div class="col-sm-2 card card-five phide"></div>
+ 						<div class="col-sm-2 card card-four phide"></div>
+ 						<div class="col-sm-2 card card-three phide"></div>
+ 						<div class="col-sm-2 card card-two phide"></div>
+ 						<div class="col-sm-2 card card-one phide"></div>
  					</div> <!-- end player cards -->
+ 					<div class="col-sm-3">
+ 						<div class="btn-group-vertical">
+	 						<button class="btn player-total" disabled="disabled">Player Total</button>
+	 						<button class="btn player-total-number" disabled="disabled">0</button>
+	 						<button class="btn player-overall" disabled="disabled">Player Overall</button>
+	 						<button class="btn player-overall-number" disabled="disabled">0</button>
+ 						</div>
+ 					</div>
  				</div> <!-- end player wrapper -->
  			</div> <!-- end player row -->
+ 			<hr>
  			<div class="row player-actions">
-				<div class="col-sm-2 col-sm-offset-2"><button class="btn deal-button">Deal</button></div>
-				<div class="col-sm-2 col-sm-offset-1"><button class="btn hit-button">Hit</button></div>
-				<div class="col-sm-2 col-sm-offset-1"><button class="btn stand-button">Stand</button></div>
+ 				<div class="col-sm-8 col-sm-offset-2 player-actions">
+	 				<div class="btn-group">
+						<button class="btn deal-button">Deal</button>
+						<button class="btn hit-button">Hit</button>
+						<button class="btn stand-button">Stand</button>
+						<button class="btn reset">Reset</button>
+					</div>
+				</div>
 			</div><!-- end buttons -->
 			<hr>
-			<div class="row bet-actions">
-				<div class="col-sm-12"></div>
+			<div class="row bet-wrap">
+				<div class="col-sm-5 col-sm-offset-1 bet-actions">
+					<div class="btn-group">
+						<button class="btn increase-ten">+10</button>
+						<button class="btn increase-bet">+</button>
+						<button class="btn bet-amount">0</button>
+						<button class="btn decrease-bet">-</button>
+						<button class="btn decrease-ten">-10</button>
+						<button class="btn bet-submit">Bet</button>
+					</div>	
+				</div>
+				<div class="col-sm-3 col-sm-offset-1 bet-actions">
+					<div class="btn-group">
+						<button class="btn">Wallet</button>
+						<button class="btn wallet">200</button>
+					</div>
+				</div>
 			</div>
  		</div> <!-- end the table -->
  	</div> <!-- end the overall row -->

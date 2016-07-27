@@ -1,10 +1,13 @@
 body{
 	background-image: url('images/old-paper-background.png');
 }
+button:focus{
+	outline: none !important;
+}
 .the-table{
 	background-color: #2f2f2f;
 	border: 5px solid #df8920;
-	border-radius: 10px;
+	border-radius: 20px 20px 0 0;
 	margin-top: 30px;
 	padding: 30px 0px;
 }
@@ -25,16 +28,33 @@ body{
 	background-image:url('images/card-back-new.jpg');
 	background-repeat: no-repeat;
 	background-size: auto 120px;
+	opacity: 0;
 }
 
-.game-banner{
+.phide{
+	transition: all .5s;
+	left: -90px;
+}
+
+.dhide{
+	transition: all .5s;
+	left: 90px;
+}
+
+.move{
+	opacity: 1;
+	transition: all .5s;
+	left: 0px;
+}
+
+.game-alerts{
 	color: #d45a02;
 	font-weight: bold;
 	font-size: 14px;
 }
 
-.buffer{
-	color: #2f2f2f;
+.message-container{
+	height: 20px;
 }
 
 .dealer-hand-wrapper, .player-hand-wrapper, .bet{
@@ -45,6 +65,10 @@ body{
 .bet{
 	color: #721000;
 	padding-bottom: 5px;
+}
+
+.bet-amount, .increase-bet, .bet-submit, .decrease-bet, .decrease-ten, .wallet{
+	border-left: 1px solid #2f2f2f;
 }
 
 .bet-bottom{
@@ -68,22 +92,39 @@ hr.unseen{
 	color: #df8920;
 }
 
-.player-actions button, .reset, .bet-actions button{
-	width: 100%;
+.player-actions button, .reset{
 	background-color: #2f2f2f;
 	color: #df8920;
-	border-radius: 3px;
-	margin-top: 10px;
-	box-shadow: 0px 0px 10px 5px rgba(71, 71, 71, 0.4);
+	text-align: center;
+	padding: ;
+}
+
+.player-actions{
+	text-align: center;
+	padding: 5px 10px;
+}
+.bet-actions{
+	text-align: center;
+}
+
+.bet-actions button{
+	background-color: #df8920;
+}
+.bet-actions span{
+	color: #df8920;
 	text-align: center;
 }
 
 .reset{
-	margin-top: 30px;
-	display: none;
-	top:-50px;
-	left: 280px;
-	position: absolute;
+	left: -40px;
+	opacity: 0;
+	transition: all .5s;
+}
+
+.slide{
+	transition: all .5s;
+	opacity: 1;
+	left: 0px;
 
 }
 
