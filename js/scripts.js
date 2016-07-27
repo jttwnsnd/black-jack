@@ -77,6 +77,7 @@ $(document).ready(function(){
 		}else{
 			alert('You must place a bet before you start!');
 		}
+		$('.increase-ten, .increase-bet, .decrease-bet, .decrease-ten').attr('disabled', 'disabled');
 	})
 	$('.hit-button').click(function(){
 		var slotForNewCard = '';
@@ -274,6 +275,7 @@ function reset(){
 	$('.dealer-total-number').html('0');
 	$('.player-total-number').html('0');
 	$('.hit-button, .stand-button, .deal-button').removeAttr('disabled');
+	$('.increase-ten, .increase-bet, .decrease-bet, .decrease-ten').removeAttr('disabled', 'disabled');
 	$('.game-alerts').html('');
 	$('.reset').removeClass('slide');
 	if((overallDealerNumber || overallPlayerNumber) > 0){
@@ -281,16 +283,17 @@ function reset(){
 		overallPlayerNumber = 0;
 	}
 	betHold.innerHTML = resetLove;
+	betAmount = 0;
 }
 
 function betResults(){
 	var walletTemp = parseInt(walletAmount.innerHTML);
 	var totalWallet = 0;
 	if(walletTemp > 0){
-		if(overallDealerNumber++){
+		if(overallPlayerNumber++){
 			totalWallet = walletTemp + betAmount;
 			$('.wallet').html(totalWallet);
-		}else if(overallPlayerNumber++){
+		}else if(overallDealerNumber++){
 			totalWallet = walletTemp - betAmount;
 			$('.wallet').html(totalWallet);
 		}
