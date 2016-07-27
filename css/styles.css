@@ -28,7 +28,7 @@ body{
 }
 
 .game-banner{
-	color: #721000;
+	color: #d45a02;
 	font-weight: bold;
 	font-size: 14px;
 }
@@ -43,6 +43,7 @@ body{
 	text-align: center;
 }
 .bet{
+	color: #721000;
 	padding-bottom: 5px;
 }
 

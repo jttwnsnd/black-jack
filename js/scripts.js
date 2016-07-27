@@ -42,13 +42,13 @@ $(document).ready(function(){
 		placeCard('player', 'one', theDeck[0]);
 
 		dealersHand.push(theDeck[1]);
-		placeCard('dealer', 'one', theDeck[1]);
+		setTimeout(function(){placeCard('dealer', 'one', theDeck[1])}, 200);
 
 		playersHand.push(theDeck[2]);
-		placeCard('player', 'two', theDeck[2]);
+		setTimeout(function(){placeCard('player', 'two', theDeck[2])}, 400);
 
 		dealersHand.push(theDeck[3]);
-		placeCard('dealer', 'two', theDeck[3]);
+		setTimeout(function(){placeCard('dealer', 'two', theDeck[3])}, 600);
 
 		calculateTotal(playersHand, 'player');
 		calculateTotal(dealersHand, 'dealer');
@@ -114,8 +114,8 @@ function placeCard(who, where, cardToPlace){
 	// 	'backgroundImage': imgToPlace
 	// })
 	if((who === 'player') || ((who === 'dealer') && (where === 'one'))){
-	$(classSelector).delay(200).fadeOut(500, function(){
-		$(this).css({'backgroundImage':imgToPlace}).fadeIn(500);
+	$(classSelector).delay(200).fadeOut(300, function(){
+		$(this).css({'backgroundImage':imgToPlace}).fadeIn(300);
 	})
 	}else if(where !== 'one'){
 		$(classSelector).css({'backgroundImage':'url("css/images/card-back-new.jpg")'});
