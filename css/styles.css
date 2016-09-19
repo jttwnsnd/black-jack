@@ -4,6 +4,9 @@ body{
 button:focus{
 	outline: none !important;
 }
+.floating_instruction{
+	margin: 20px;
+}
 .the-table{
 	background-color: #2f2f2f;
 	border: 5px solid #df8920;

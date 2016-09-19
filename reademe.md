@@ -7,7 +7,7 @@ Bet options increment and will be added to earnings. Bets can be stacked.
 Reset button only appears when game is over.
 Cards fade in to what they are, with House hand having only one card revealed.
 
-
+![Screenshot of the game](/css/images/Black-jack-screenshot.png)
 ##Styling features:
 Bootstrap set up the grid and overall layout.
 The alchemy color palette from color-hex.com was used.

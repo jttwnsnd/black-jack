@@ -57,6 +57,7 @@ $(document).ready(function(){
 		if(placeBet == true){
 			createDeck();
 			shuffleDeck();
+			$('.floating_instruction').html('Now, if you like your hand, select "Stand", otherwise "Hit"');
 
 			//pushes cards onto the respective array, the new card. then place it in the DOM
 			playersHand.push(theDeck[0]);
@@ -81,6 +82,7 @@ $(document).ready(function(){
 	})
 	$('.hit-button').click(function(){
 		var slotForNewCard = '';
+		$(".floating_instruction").html("'Stand' or 'Hit'");
 		if(playersHand.length == 2){slotForNewCard = "three";}
 		else if(playersHand.length == 3){slotForNewCard = "four";}
 		else if(playersHand.length == 4){slotForNewCard = "five";}
@@ -267,6 +269,7 @@ function reset(){
 	dealersHand = [];
 	theDeck = [];
 	topOfTheDeck = 4;
+	$('.floating_instruction').html('Black Jack! To begin, place a bet in 10 or single, hit "Bet", and then select "Deal"');
 	$('.card').each(function(){
 		$('.card').css({
 			'backgroundImage':"url('css/images/card-back-new.jpg')"
